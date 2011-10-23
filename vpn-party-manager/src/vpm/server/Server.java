@@ -10,7 +10,7 @@ public class Server {
 
     public final static String SERVER_LIST_URL = "http://vpn-party-manager.appspot.com/server/list";
 
-    public static String NAME = "Name";
+    public static String NAME = "NoobHost";
 
     public static String PORT = "493098";
 
