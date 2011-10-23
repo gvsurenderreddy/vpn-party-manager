@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
               http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-         version="2.5"
-         xmlns="http://java.sun.com/xml/ns/javaee">
+	version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
 
-  <!-- Servlets -->
-  <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>vpm.gae.server.GreetingServiceImpl</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/vpn_party_manager_gae/greet</url-pattern>
-  </servlet-mapping>
-  
-  <!-- Default page to serve -->
-  <welcome-file-list>
-    <welcome-file>Vpn_party_manager_gae.html</welcome-file>
-  </welcome-file-list>
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>updateServer</servlet-name>
+		<servlet-class>vpm.gae.server.UpdateServer</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>serverList</servlet-name>
+		<servlet-class>vpm.gae.server.ServerList</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>updateServer</servlet-name>
+		<url-pattern>/server/update</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>serverList</servlet-name>
+		<url-pattern>/server/list</url-pattern>
+	</servlet-mapping>
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>sites/index.jsp</welcome-file>
+	</welcome-file-list>
 
 </web-app>
