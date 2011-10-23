@@ -69,11 +69,14 @@ public class Server {
 	}
     }
 
-    private static void delete(Server server) {
+    public void delete() {
+
 	PersistenceManager pm = PMF.get().getPersistenceManager();
 	try {
-	    pm.deletePersistent(server);
+	    pm.deletePersistent(pm.getObjectById(this.getClass(),
+		    this.getName()));
 	} catch (Exception e) {
+	    System.out.println(e.getMessage());
 	} finally {
 	    pm.close();
 	}
@@ -106,6 +109,10 @@ public class Server {
 
     public String getPort() {
 	return port;
+    }
+
+    public Date getDate() {
+	return date;
     }
 
 }
