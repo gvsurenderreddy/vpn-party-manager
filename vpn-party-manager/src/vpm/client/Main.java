@@ -1,6 +1,6 @@
 package vpm.client;
 
-import vpm.client.gui.MainWindow;
+import vpm.client.view.MainWindow;
 
 public class Main {
 
