@@ -3,16 +3,23 @@ package vpm.server;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import vpm.server.model.Server;
 import vpm.shared.Network;
 
 public class ServerUpdateTask extends TimerTask {
 
     Timer timer = new Timer();
+    
+    Server server;
+
+    public ServerUpdateTask(Server server){
+	this.server = server;
+    }
 
     @Override
     public void run() {
-	String url = Server.SERVER_UPDATE_URL + "?name=" + Server.NAME
-		+ "&port=" + Server.PORT;
+	String url = Server.SERVER_UPDATE_URL + "?name=" + server.getName()
+		+ "&port=" + server.getPort();
 	Network.readFromUrl(url);
     }
 

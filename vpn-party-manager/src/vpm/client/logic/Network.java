@@ -22,7 +22,7 @@ public class Network {
 	Type collectionType = new TypeToken<List<Server>>() {
 	}.getType();
 	server.addAll((List<Server>) gson.fromJson(vpm.shared.Network
-		.readFromUrl(vpm.server.Server.SERVER_LIST_URL), collectionType));
+		.readFromUrl(vpm.server.model.Server.SERVER_LIST_URL), collectionType));
 	return server;
     }
 
