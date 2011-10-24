@@ -1,7 +1,6 @@
 package vpm.server.model;
 
 import vpm.server.ServerUpdateTask;
-import vpm.server.view.MainWindow;
 
 public class Server {
 

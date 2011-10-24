@@ -1,8 +1,10 @@
 package vpm.server.model;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +18,10 @@ import javax.xml.stream.XMLStreamWriter;
 public class Config {
 
     private static final String VPM = "vpm";
+
+    private static final String CONFIGDIR = System.getProperty("user.home")
+	    + System.getProperty("file.separator") + "vpm"
+	    + System.getProperty("file.separator");
 
     private static final String CONFIGFILE = "config.xml";
 
@@ -36,14 +42,15 @@ public class Config {
     }
 
     public void load() {
-	load(CONFIGFILE);
+	load(CONFIGDIR, CONFIGFILE);
     }
 
-    public void load(String filename) {
+    public void load(String dirname, String filename) {
 	XMLInputFactory factory = XMLInputFactory.newInstance();
 	try {
 	    XMLStreamReader parser = factory
-		    .createXMLStreamReader(new FileInputStream(filename));
+		    .createXMLStreamReader(new FileInputStream(dirname
+			    + filename));
 	    while (parser.hasNext()) {
 		switch (parser.getEventType()) {
 		case XMLStreamConstants.START_ELEMENT:
@@ -59,7 +66,6 @@ public class Config {
 	    }
 
 	} catch (FileNotFoundException e) {
-	    e.printStackTrace();
 	    return;
 	} catch (XMLStreamException e) {
 	    e.printStackTrace();
@@ -68,14 +74,19 @@ public class Config {
     }
 
     public void save() {
-	save(CONFIGFILE);
+	save(CONFIGDIR, CONFIGFILE);
     }
 
-    public void save(String filename) {
+    public void save(String dirname, String filename) {
+	File f = new File(dirname);
+	if (!f.exists()) {
+	    f.mkdirs();
+	}
 	XMLOutputFactory factory = XMLOutputFactory.newInstance();
 	try {
 	    XMLStreamWriter writer = factory
-		    .createXMLStreamWriter(new FileOutputStream(filename));
+		    .createXMLStreamWriter(new FileOutputStream(dirname
+			    + filename));
 
 	    writer.writeStartDocument();
 	    writer.writeCharacters("\n");
