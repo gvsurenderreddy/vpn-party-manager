@@ -1,8 +1,9 @@
 package vpm.server.view;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,14 +25,21 @@ public class MainWindow extends JFrame {
     private JTextField portTextField;
     private Server server;
 
-
     /**
      * Create the frame.
      */
     public MainWindow(Server s) {
 	this.server = s;
 	setTitle("VPM - Server");
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	// create custom close operation
+	this.addWindowListener(new WindowAdapter() {
+	    public void windowClosing(WindowEvent e) {
+		exitProcedure();
+	    }
+
+	});
 	setBounds(100, 100, 450, 300);
 	contentPane = new JPanel();
 	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -60,12 +68,20 @@ public class MainWindow extends JFrame {
 	btnStartServer.addActionListener(new ActionListener() {
 	    public void actionPerformed(ActionEvent arg0) {
 		server.setName(serverNameTextField.getText());
+		server.getConfig().set("servername",
+			serverNameTextField.getText());
 		server.setPort(portTextField.getText());
+		server.getConfig().set("serverport", portTextField.getText());
 		server.getServerUpdateTask().start();
 	    }
 	});
 	btnStartServer.setBounds(302, 196, 101, 25);
 	contentPane.add(btnStartServer);
+
+    }
+
+    private void exitProcedure() {
+	server.getConfig().save();
     }
 
     public void setServer(Server server) {
