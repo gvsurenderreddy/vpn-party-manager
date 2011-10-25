@@ -1,6 +1,5 @@
 package vpm.server.model;
 
-
 public class Server {
 
     public final static String SERVER_UPDATE_URL = "http://vpn-party-manager.appspot.com/server/update";
@@ -10,8 +9,6 @@ public class Server {
     private String name = "NoobHost";
 
     private String port = "493098";
-
-    private ServerUpdateTask sut;
 
     private Config config;
 
@@ -24,11 +21,6 @@ public class Server {
 	    this.name = name;
 	if (port != null)
 	    this.port = port;
-	sut = new ServerUpdateTask(this);
-    }
-
-    public ServerUpdateTask getServerUpdateTask() {
-	return sut;
     }
 
     public void setName(String name) {

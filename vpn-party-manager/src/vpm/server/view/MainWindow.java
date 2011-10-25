@@ -73,7 +73,6 @@ public class MainWindow extends JFrame {
 			serverNameTextField.getText());
 		server.setPort(portTextField.getText());
 		server.getConfig().set("serverport", portTextField.getText());
-		server.getServerUpdateTask().start();
 		viewObserver.notifyAdvertisement(new ViewEvent(this,
 			ViewEvent.Type.STARTSERVER));
 	    }
