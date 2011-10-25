@@ -1,9 +1,8 @@
-package vpm.server;
+package vpm.server.model;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import vpm.server.model.Server;
 import vpm.shared.Network;
 
 public class ServerUpdateTask extends TimerTask {

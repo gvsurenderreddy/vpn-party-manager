@@ -64,7 +64,6 @@ public class Config {
 		}
 		parser.next();
 	    }
-
 	} catch (FileNotFoundException e) {
 	    return;
 	} catch (XMLStreamException e) {

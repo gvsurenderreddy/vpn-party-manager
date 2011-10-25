@@ -24,6 +24,7 @@ public class MainWindow extends JFrame {
     private JTextField serverNameTextField;
     private JTextField portTextField;
     private Server server;
+    private ViewObserver viewObserver;
 
     /**
      * Create the frame.
@@ -73,6 +74,8 @@ public class MainWindow extends JFrame {
 		server.setPort(portTextField.getText());
 		server.getConfig().set("serverport", portTextField.getText());
 		server.getServerUpdateTask().start();
+		viewObserver.notifyAdvertisement(new ViewEvent(this,
+			ViewEvent.Type.STARTSERVER));
 	    }
 	});
 	btnStartServer.setBounds(302, 196, 101, 25);
@@ -86,6 +89,10 @@ public class MainWindow extends JFrame {
 
     public void setServer(Server server) {
 	this.server = server;
+    }
+
+    public void setViewObserver(ViewObserver viewObserver) {
+	this.viewObserver = viewObserver;
     }
 
 }
