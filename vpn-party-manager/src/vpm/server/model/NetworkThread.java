@@ -4,7 +4,7 @@ public class NetworkThread extends Thread {
 
     private Server server;
 
-    private ServerUpdateTask sut;
+    private ServerUpdateTask serverUpdateTask;
 
     public NetworkThread(Server server) {
 	super();
@@ -13,8 +13,8 @@ public class NetworkThread extends Thread {
 
     public void start() {
 	super.start();
-	sut = new ServerUpdateTask(server);
-	sut.start();
+	serverUpdateTask = new ServerUpdateTask(server);
+	serverUpdateTask.start();
     }
 
     @Override
